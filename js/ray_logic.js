@@ -1,0 +1,3 @@
+function intersect(object, ray){
+    
+}
