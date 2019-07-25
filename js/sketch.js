@@ -1,4 +1,5 @@
-// For drawing the visuals
+// All functions for drawing the visuals in the browser
+
 function drawWall(wall, weight = 1, color = 255){
     push()
     strokeWeight(weight)
@@ -7,9 +8,8 @@ function drawWall(wall, weight = 1, color = 255){
     pop()
 }
 
-function drawLightSource(){
-    // circle(mouseX, mouseY, 10)
-    circle(140, 300, 10)    
+function drawLightSource(x, y, size){
+    circle(x, y, size)    
 }
 
 function castRay(ray, weight = 1, color = 255){
@@ -43,5 +43,11 @@ function draw(){
     drawWall(wall, 10, 255)
     castRay(ray, 2, 255)
     ray.direction = Vector(mouseX, mouseY)
+    pointOfIntersection = linesIntersect(wall, ray)
 
+    if (pointOfIntersection){
+        drawLightSource(pointOfIntersection.x, pointOfIntersection.y, 20)
+    }
+
+    // console.log(linesIntersect(wall, ray))
 }
