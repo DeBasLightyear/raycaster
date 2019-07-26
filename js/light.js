@@ -1,10 +1,17 @@
 // Logic for light sources
 
 // Calculate the end point of a ray, based on its origin and direction and all objects in the scene
-function findRayEndPoint(ray, objects){
+function findRayEndPoints(light, objects){
     // Trace ray
     // Return first point of collision
-
+    for (const ray of light.rays){
+        for (const obj of objects){
+            // 1. Find all collisions per ray
+            let collisions = []
+            collisions.push(findLinesIntersect(obj, ray))
+            
+        }
+    }
 }
 
 // Creates a light source and the rays it emits. Each ray has an origin, a direction and an end point.

@@ -1,4 +1,9 @@
-// Logic for calculating line intersection
+/* Logic for calculating line intersection */
+
+
+////////////////////////////////////////////////////////
+// Basic functions for line intersection calculations //
+////////////////////////////////////////////////////////
 
 // Helper functions for calculating intersection
 function calcT(x1, x2, x3, x4, y1, y2, y3, y4){
@@ -22,7 +27,7 @@ function calcIntersectPoint(x1, x2, y1, y2, T){
 }
 
 // Calculating if two lines intersect. Returns point of intersection
-function linesIntersect(object, ray){
+function findLinesIntersect(object, ray){
     // L1 is the object
     x1 = object.VectorA.x
     y1 = object.VectorA.y
@@ -42,4 +47,39 @@ function linesIntersect(object, ray){
     if ((0 < T && T < 1) && U > 0){
         return calcIntersectPoint(x1, x2, y1, y2, T)
     }
+}
+
+////////////////////////////////////////////////////
+// Functions for finding the nearest intersection //
+////////////////////////////////////////////////////
+
+// Calculate the distance between two vectors
+function calcDistance(vectorA, vectorB){
+    x1 = vectorA.x
+    y1 = vectorA.y
+    x2 = vectorB.x
+    y2 = vectorB.y
+
+    return Math.sqrt((x1 - x2)**2 + (y1 - y2)**2)
+}
+
+// Finding the nearest intersection in an array of intersections
+function findFirstIntersection(origin, intersections){
+    let distances = []
+    let records = []
+    
+    for (const intersection of intersections){
+        // First, measure and record each distance
+        const distance = calcDistance(origin, intersection)
+        const record = { intersect : intersection, distance : distance }
+        distances.push(distance)
+        records.push(record)
+    }
+
+    // Second, order the measurements. Smallest first
+    distances.sort()
+
+    // Last, return intersection that matches the first measurement in array
+    const result = records.filter( (item) => item.distance === distances[0] )
+    return result[0].intersect
 }
