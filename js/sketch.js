@@ -23,7 +23,7 @@ function drawRay(ray, weight = 1, color = 255){
 
 function drawLight(light){
     drawLightSource(light.origin.x, light.origin.y, 5)
-    for (ray of light.rays){
+    for (const ray of light.rays){
         drawRay(ray)
     }
 }
