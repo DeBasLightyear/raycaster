@@ -1,4 +1,4 @@
-// All logic for calcualting line intersection
+// Logic for calculating line intersection
 
 // Helper functions for calculating intersection
 function calcT(x1, x2, x3, x4, y1, y2, y3, y4){
